@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Logic Gate Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Logic Gate Simulator</h1>
+<p class="sub">Toggle inputs, watch the output, and read the truth table.</p>
+
+<div class="tabs" role="tablist">
+  <button id="tab1" class="active" onclick="setMode(1)">Single gate</button>
+  <button id="tab2" onclick="setMode(2)">Build a circuit</button>
+</div>
+
+<section id="mode1">
+  <div class="gates" id="gateBtns"></div>
+  <div class="panel">
+    <svg id="svg1" class="gate" viewBox="0 0 120 70" role="img" aria-label="Logic gate diagram"></svg>
+    <div class="toggles" id="tog1"></div>
+    <div class="out"><span>Output Y</span><span class="bit" id="y1">0</span></div>
+    <p class="desc" id="desc1"></p>
+  </div>
+  <div class="panel"><table id="tt"></table></div>
+</section>
+
+<section id="mode2" class="hide">
+  <div class="panel">
+    <p class="desc" style="margin-top:0">Two gates feed a third: Y = G3( G1(A,B), G2(C,D) ). Pick any gates and flip the inputs.</p>
+    <div class="circ">
+      <div class="cell"><h3>Gate 1</h3><select id="g1" onchange="renderCirc()"></select><svg id="s1" class="gate" viewBox="0 0 120 70"></svg><div class="toggles" id="t1"></div></div>
+      <div class="cell"><h3>Gate 2</h3><select id="g2" onchange="renderCirc()"></select><svg id="s2" class="gate" viewBox="0 0 120 70"></svg><div class="toggles" id="t2"></div></div>
+    </div>
+    <div class="cell final" style="margin-top:10px;border:1.5px solid var(--line);border-radius:12px;padding:8px">
+      <h3 style="margin:0 0 4px;font-size:.95rem">Gate 3 (combines Gate 1 and Gate 2)</h3>
+      <select id="g3" onchange="renderCirc()"></select>
+      <svg id="s3" class="gate" viewBox="0 0 120 70"></svg>
+      <div class="out"><span>Final output Y</span><span class="bit" id="y3">0</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
